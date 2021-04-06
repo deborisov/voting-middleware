@@ -1,0 +1,8 @@
+{
+    "channel": "mainchannel",
+    "userName": "Admin@abacaba.com",
+    "ccpPath": "./profiles/dev-connection.yaml",
+    "walletPath": "./wallet",
+    "voteCC":"votechoice",
+    "votingCC":"voteentity"
+  }
