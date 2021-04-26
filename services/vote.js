@@ -57,7 +57,7 @@ async function queryVoteByVotingId(req, contract){
 }
 
 async function queryVoteByVotingUserPair(req, contract){
-  let user_id = req.params.user_id;
+  let user_id = req.query.user_id;
   let voting_id = req.query.voting_id;
   try {
     let result = await contract.evaluateTransaction('queryVoteByVotingUserPair', user_id, voting_id);

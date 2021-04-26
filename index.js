@@ -4,8 +4,8 @@
   let gateway;
   let network;
   var vote = require('./routes/vote_router');
-  var voting = require('./routes/voting_router')
-
+  var voting = require('./routes/voting_router');
+  
   const app = express();
   app.use(express.json());      
   app.use(express.urlencoded());  
@@ -23,13 +23,18 @@
       req.contract = await network.getContract(config.voteCC);
       next();
     }, vote);
+
     app.use('/voting', async function(req, res, next) {
       req.contract = await network.getContract(config.votingCC);
       next();
     }, voting);
 
+    app.use((error, req, res, next) => {
+      return res.status(500).json({ error: error.toString(), body: null});
+    });
+
     // finally we start the api server
-    app.listen(3000, function(){	
+    app.listen(80, function(){	
       console.log('- api server started listening on port 3000!');
     });	
   })
