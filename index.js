@@ -34,8 +34,8 @@
     });
 
     // finally we start the api server
-    app.listen(80, function(){	
-      console.log('- api server started listening on port 3000!');
+    app.listen(config.app.port, function(){	
+      console.log('- api server started listening on port ' + config.app.port);
     });	
   })
 

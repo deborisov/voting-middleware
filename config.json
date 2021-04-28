@@ -4,5 +4,8 @@
     "ccpPath": "./profiles/dev-connection.yaml",
     "walletPath": "./wallet",
     "voteCC":"votechoice",
-    "votingCC":"voteentity"
+    "votingCC":"voteentity",
+    "app":{
+      "port":3000
+    }
   }
