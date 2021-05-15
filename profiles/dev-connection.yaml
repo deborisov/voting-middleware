@@ -33,7 +33,9 @@ channels:
   mainchannel:
     # List of orderers designated by the application to use for transactions on this channel. 
     orderers:
-      - orderer.abacaba.com
+      - abacaba-orderer-clusterip
+      - abacaba-orderer2-clusterip
+      - abacaba-orderer3-clusterip
 
     # Required. list of peers from participating orgs
     peers:
@@ -51,17 +53,41 @@ channels:
 # being only one orderer is needed. 
 #
 orderers:
-  orderer.abacaba.com:
-    url: grpc://192.168.49.2:30750
+  abacaba-orderer-clusterip:
+    url: grpcs://192.168.49.2:30750
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
     grpcOptions:
-      ssl-target-name-override: orderer.abacaba.com
+      ssl-target-name-override: abacaba-orderer-clusterip
 
     # In dev environment the Orderer is NOT enabled for TLS
-    # tlsCACerts:
-    #   path: comercial-paper/organization/magnetocorp/orderer/orderer.magnetocorp.com/tlscacerts/example.com-cert.pem
+    tlsCACerts:
+      path: certs/first/tlsca.abacaba.com-cert.pem
+
+  abacaba-orderer2-clusterip:
+    url: grpcs://192.168.49.2:30750
+
+    # these are standard properties defined by the gRPC library
+    # they will be passed in as-is to gRPC client constructor
+    grpcOptions:
+      ssl-target-name-override: abacaba-orderer2-clusterip
+
+    # In dev environment the Orderer is NOT enabled for TLS
+    tlsCACerts:
+      path: certs/first/tlsca.abacaba.com-cert.pem
+
+  abacaba-orderer3-clusterip:
+    url: grpcs://192.168.49.2:30750
+
+    # these are standard properties defined by the gRPC library
+    # they will be passed in as-is to gRPC client constructor
+    grpcOptions:
+      ssl-target-name-override: abacaba-orderer3-clusterip
+
+    # In dev environment the Orderer is NOT enabled for TLS
+    tlsCACerts:
+      path: certs/first/tlsca.abacaba.com-cert.pem
 
 #
 # List of peers to send various requests to, including endorsement, query
@@ -70,12 +96,12 @@ orderers:
 peers:
   peer1.abacaba.com:
 
-    url: grpc://192.168.49.2:30751
+    url: grpcs://192.168.49.2:30751
 
-    # grpcOptions:
-    #   ssl-target-name-override: peer0.acme.com
+    grpcOptions:
+      ssl-target-name-override: localhost
 
-    # tlsCACerts:
-    #   path: [ This need to be set if TLS is enabled on peer]
+    tlsCACerts:
+      path: certs/ca.crt
 
 
